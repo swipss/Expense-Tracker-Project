@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, TextInput, Button, TouchableOpacity, Picker, Touchable } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Button, TouchableOpacity, Touchable } from 'react-native';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import {addTransaction} from '../redux/store/actions/transactionAction';
+import { Picker } from '@react-native-picker/picker'
 
 export default function AddTransaction({navigation}) {
     const [selectedValue, setSelectedValue] = useState("expense");

@@ -5,6 +5,7 @@ import ExpenseItem from '../components/ExpenseItem';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../components/Card';
 import NoTransactions from '../components/NoTransactions';
+import BottomTabs from '../components/BottomTabs';
 
 
 export default function Home({ navigation }) {
@@ -32,8 +33,8 @@ export default function Home({ navigation }) {
 
                     ) : <NoTransactions />
                 }
-
             </View>
+            <BottomTabs />
         </View>
 
     )
