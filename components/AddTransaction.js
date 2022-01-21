@@ -7,6 +7,7 @@ import { Picker } from '@react-native-picker/picker'
 
 export default function AddTransaction({navigation}) {
     const [selectedValue, setSelectedValue] = useState("expense");
+    const [category, setCategory] = useState("");
     // console.log(selectedValue);
 
 
@@ -48,7 +49,19 @@ export default function AddTransaction({navigation}) {
                         >
                             <Picker.Item label='Expense' value='expense' />
                             <Picker.Item label='Income' value='income' />
-                        </Picker>
+                    </Picker>
+                    <Picker
+                        mode='dropdown'
+                        selectedValue={category}
+                        onValueChange={(itemValue) => setSelectedValue(itemValue)}
+                        >
+                            <Picker.Item label='Entertainment' value='entertainment' />
+                            <Picker.Item label='Grocery' value='grocery' />
+                            <Picker.Item label='Investment' value='investment' />
+                            <Picker.Item label='Clothes and Shoes' value='clothes' />
+                            <Picker.Item label='Transfer' value='transfer' />
+                            <Picker.Item label='Health' value='health' />
+                    </Picker>
                     <View style={styles.formWrapper}>
                         <TextInput
                         style={styles.text}

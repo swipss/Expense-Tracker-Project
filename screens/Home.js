@@ -34,7 +34,7 @@ export default function Home({ navigation }) {
                     ) : <NoTransactions />
                 }
             </View>
-            <BottomTabs />
+            <BottomTabs navigation={navigation}/>
         </View>
 
     )

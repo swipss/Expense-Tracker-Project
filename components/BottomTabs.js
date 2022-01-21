@@ -1,10 +1,11 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-export default function BottomTabs() {
+export default function BottomTabs({ navigation }) {
     return (
-        <View>
-            <Text>Bottom Tabs</Text>
-        </View>
+        <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
+            <MaterialIcons name="category" size={30} />
+        </TouchableOpacity>
     )
 }
