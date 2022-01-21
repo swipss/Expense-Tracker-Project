@@ -2,8 +2,8 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { borderLeftColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
+import { deleteTransaction } from '../../redux/store/actions/transactionAction';
 import { useDispatch } from 'react-redux';
-import { deleteTransaction } from '../redux/store/actions/transactionAction';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export default function ExpenseItem(props) {
@@ -19,10 +19,17 @@ export default function ExpenseItem(props) {
                 }}
                 style={{marginRight: 5, opacity: 0.4}}
                 />
-                <Text style={{
-                    fontSize: 15,
-                    fontWeight: '600'
-                }}>{props.title}</Text>
+                <View>
+                    <Text style={{
+                        fontSize: 15,
+                        fontWeight: '600',
+                    }}>{props.category}</Text>
+                    <Text style={{
+                        fontSize: 13,
+                        fontWeight: '600',
+                        opacity: .5,
+                    }}>{props.title}</Text>
+                </View>
             </View>
             <View style={styles.rightWrapper}>
                 <Text style={{

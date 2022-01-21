@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, Button, TouchableOpacity, Touchable } from 'react-native';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import {addTransaction} from '../redux/store/actions/transactionAction';
+import {addTransaction} from '../../redux/store/actions/transactionAction';
 import { Picker } from '@react-native-picker/picker'
 
 export default function AddTransaction({navigation}) {
     const [selectedValue, setSelectedValue] = useState("expense");
-    const [category, setCategory] = useState("");
-    // console.log(selectedValue);
+    const [category, setCategory] = useState('Entertainment');
+    // console.log(selectedValue, category);
 
 
     const dispatch = useDispatch();
@@ -25,6 +25,7 @@ export default function AddTransaction({navigation}) {
         const newTransaction = {
             id,
             title,
+            category,
             price: +price,
         }
 
@@ -53,14 +54,14 @@ export default function AddTransaction({navigation}) {
                     <Picker
                         mode='dropdown'
                         selectedValue={category}
-                        onValueChange={(itemValue) => setSelectedValue(itemValue)}
+                        onValueChange={(itemValue) => setCategory(itemValue)}
                         >
-                            <Picker.Item label='Entertainment' value='entertainment' />
-                            <Picker.Item label='Grocery' value='grocery' />
-                            <Picker.Item label='Investment' value='investment' />
-                            <Picker.Item label='Clothes and Shoes' value='clothes' />
-                            <Picker.Item label='Transfer' value='transfer' />
-                            <Picker.Item label='Health' value='health' />
+                            <Picker.Item label='Entertainment' value='Entertainment' />
+                            <Picker.Item label='Grocery' value='Grocery' />
+                            <Picker.Item label='Investment' value='Investment' />
+                            <Picker.Item label='Clothes and Shoes' value='Clothes & Shoes' />
+                            <Picker.Item label='Health' value='Health' />
+                            <Picker.Item label='Checks' value='Checks' />
                     </Picker>
                     <View style={styles.formWrapper}>
                         <TextInput

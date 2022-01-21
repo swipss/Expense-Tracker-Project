@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, Button, TouchableOpacity } from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
-import ExpenseItem from '../components/ExpenseItem';
+import ExpenseItem from '../components/HomeComponents/ExpenseItem';
 import { useSelector, useDispatch } from 'react-redux';
-import Card from '../components/Card';
-import NoTransactions from '../components/NoTransactions';
-import BottomTabs from '../components/BottomTabs';
+import Card from '../components/HomeComponents/Card';
+import NoTransactions from '../components/HomeComponents/NoTransactions';
+import BottomTabs from '../components/HomeComponents/BottomTabs';
 
 
 export default function Home({ navigation }) {
@@ -26,7 +26,7 @@ export default function Home({ navigation }) {
                     transactions.length > 0 ? (
                         <FlatList data={transactions}
                         renderItem={({item}) => (
-                            <ExpenseItem title={item.title} price={item.price} id={item.id}/>
+                            <ExpenseItem title={item.title} price={item.price} id={item.id} category={item.category}/>
                         )}
                         keyExtractor={(item) => item.id.toString()}
                         />
