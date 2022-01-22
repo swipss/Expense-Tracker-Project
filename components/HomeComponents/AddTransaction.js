@@ -31,6 +31,7 @@ export default function AddTransaction({navigation}) {
 
         dispatch(addTransaction({...newTransaction}));
 
+
         navigation.goBack();
     };
 
@@ -81,7 +82,7 @@ export default function AddTransaction({navigation}) {
                         />
                     </View>
                     <TouchableOpacity style={{
-                        backgroundColor: 'crimson',
+                        backgroundColor: '#F1CB0C',
                         padding: 10,
                         paddingVertical: 15,
                         borderRadius: 10,

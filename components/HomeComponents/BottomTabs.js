@@ -4,8 +4,10 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export default function BottomTabs({ navigation }) {
     return (
-        <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
-            <MaterialIcons name="category" size={30} />
-        </TouchableOpacity>
+        <View style={{flexDirection: 'row', justifyContent: 'space-around', marginBottom: 10, backgroundColor: 'skyblue'}}>
+            <TouchableOpacity onPress={() => navigation.navigate("Categories")}>
+                <MaterialIcons name="category" size={30} />
+            </TouchableOpacity>
+        </View>
     )
 }

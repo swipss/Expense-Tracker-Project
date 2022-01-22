@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Card from '../components/HomeComponents/Card';
 import NoTransactions from '../components/HomeComponents/NoTransactions';
 import BottomTabs from '../components/HomeComponents/BottomTabs';
+import AddTransactionButton from '../components/HomeComponents/AddTransactionButton';
 
 
 export default function Home({ navigation }) {
@@ -14,14 +15,14 @@ export default function Home({ navigation }) {
     return (
         <View style={{
             flex: 1,
-            alignItems: 'center',
             paddingVertical: 10,
             paddingHorizontal: 20,
-            marginTop: 50,
+            marginTop: 40,
+            
         }}>
             <Card navigation={navigation} />
             
-            <View style={{flex: 1, justifyContent: 'center',}}>
+            <View style={{flex: 1, justifyContent: 'center'}}>
                 {
                     transactions.length > 0 ? (
                         <FlatList data={transactions}
@@ -33,8 +34,9 @@ export default function Home({ navigation }) {
 
                     ) : <NoTransactions />
                 }
+                {/* <AddTransactionButton navigation={navigation}/> */}
             </View>
-            <BottomTabs navigation={navigation}/>
+            {/* <BottomTabs navigation={navigation}/> */}
         </View>
 
     )

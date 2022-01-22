@@ -41,7 +41,7 @@ export default function Card({navigation}) {
                         color: '#fff',
                         fontWeight: '600',
                     }}>USD</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate("AddTransaction")} style={{
+                    {/* <TouchableOpacity onPress={() => navigation.navigate("AddTransaction")} style={{
                         padding: 10,
                         marginTop: 32,
                         borderWidth: 3,
@@ -56,18 +56,22 @@ export default function Card({navigation}) {
                             color: '#fff',
                             fontWeight: '700',
                         }}>ADD</Text>
-                    </TouchableOpacity>
-                    <Text style={{
-                        color: '#fff',
-                        marginTop: 17,
-                        fontWeight: '700',
-                        fontSize: 11,
-                    }}>Expenses</Text>
-                    <Text style={{
-                        color: '#fff',
-                        fontWeight: '700',
-                        fontSize: 15,
-                    }}>${expense}</Text>
+                    </TouchableOpacity> */}
+                    <View style={{marginTop: 80,}}>
+                        <Text style={{
+                            color: '#fff',
+                            marginTop: 17,
+                            fontWeight: '700',
+                            fontSize: 11,
+                        }}>Expenses</Text>
+                        <Text style={{
+                            color: '#fff',
+                            fontWeight: '700',
+                            fontSize: 15,
+                            textAlign: 'right',
+                        }}>${expense}</Text>
+
+                    </View>
                 </View>
             </LinearGradient>
     )
@@ -80,5 +84,15 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         flexDirection: 'row',
         padding: 22,
+        marginBottom: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
     },
 })

@@ -1,9 +1,21 @@
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Feather from 'react-native-vector-icons/Feather'
+
+
+const images = {
+  entertainment: require('../../../assets/icons/movie.png'),
+  grocery: require('../../../assets/icons/shopping-cart.png'),
+  investment: require('../../../assets/icons/budget.png'),
+  clothes: require('../../../assets/icons/cloth.png'),
+  health: require('../../../assets/icons/gym.png'),
+
+}
 
 export default function CategoryItems() {
-    const {transactions} = useSelector((state) => state.transactions);
+    
+  const {transactions} = useSelector((state) => state.transactions);
 
     const categories = transactions.filter(transaction => transaction.category == 'Grocery')
     // console.log(categories)
@@ -12,12 +24,14 @@ export default function CategoryItems() {
     // console.log(total)
     
   return (
-    <View>
-      <CategoryItem category='Entertainment' />
-      <CategoryItem category='Grocery' />
-      <CategoryItem category='Investment' />
-      <CategoryItem category='Clothes & Shoes' />
-      <CategoryItem category='Health' />
+    <View style={{
+      marginHorizontal: 20,
+    }}>
+      <CategoryItem category='Entertainment' image={images.entertainment} />
+      <CategoryItem category='Grocery' image={images.grocery}  />
+      <CategoryItem category='Investment' image={images.investment} />
+      <CategoryItem category='Clothes & Shoes'  image={images.clothes}/>
+      <CategoryItem category='Health'  image={images.health}/>
     </View>
 
   );
@@ -33,9 +47,32 @@ const CategoryItem = (props) => {
   // console.log(total)
     
   return (
-    <View>
-      <Text>{props.category}: {total}</Text>
+    <View style={styles.categoryItemWrapper}>
+      <View style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+      }}>
+        <Image source={props.image} style={{width: 50, height: 50, marginRight: 15,}}/>
+        <Text style={styles.categoryText}>{props.category}</Text>
+      </View>
+      <Text style={styles.categoryText}>{total}$</Text>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  categoryItemWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 5,
+    paddingVertical: 15,
+    alignItems: 'center',
+    borderBottomWidth: .5,
+    borderBottomColor: '#ccc'
+  },
+  categoryText: {
+    fontSize: 16,
+    fontWeight: '600'
+  },
+});
 
