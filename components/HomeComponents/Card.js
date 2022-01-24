@@ -13,7 +13,7 @@ export default function Card({navigation}) {
     const expense = prices.filter(price => price < 0).reduce((prev, curr) => (prev += curr), 0).toFixed(2) * -1;
 
     return (
-        <LinearGradient colors={['#FAAD3D', '#EFC90A', '#F1CB0C']} style={styles.box}>
+        <LinearGradient colors={['#FAAD3D', '#EFC90A', '#F1CB0C']} style={[styles.box, styles.shadow]}>
                 <View style={{
                     width: '70%',
                     alignItems: 'flex-start',
@@ -27,7 +27,7 @@ export default function Card({navigation}) {
                         fontSize: 32,
                         color: '#fff',
                         fontWeight: '700',
-                    }}>${totalPrice}</Text>
+                    }}>{totalPrice < 0 ? `-$${Math.abs(totalPrice)}` : `$${totalPrice}`}</Text>
                     <Text style={{
                         marginTop: 67,
                         color: '#fff',
@@ -57,7 +57,7 @@ export default function Card({navigation}) {
                             fontWeight: '700',
                         }}>ADD</Text>
                     </TouchableOpacity> */}
-                    <View style={{marginTop: 80,}}>
+                    {/* <View style={{marginTop: 80,}}>
                         <Text style={{
                             color: '#fff',
                             marginTop: 17,
@@ -71,7 +71,7 @@ export default function Card({navigation}) {
                             textAlign: 'right',
                         }}>${expense}</Text>
 
-                    </View>
+                    </View> */}
                 </View>
             </LinearGradient>
     )
@@ -85,14 +85,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         padding: 22,
         marginBottom: 10,
-        shadowColor: "#000",
+    },
+    shadow: {
+        shadowColor: '#000',
         shadowOffset: {
             width: 0,
-            height: 2,
+            height: 10,
         },
         shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-
+        shadowRadius: 3.5,
         elevation: 5,
     },
 })

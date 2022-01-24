@@ -7,6 +7,7 @@ import Card from '../components/HomeComponents/Card';
 import NoTransactions from '../components/HomeComponents/NoTransactions';
 import BottomTabs from '../components/HomeComponents/BottomTabs';
 import AddTransactionButton from '../components/HomeComponents/AddTransactionButton';
+import AddTransactionModal from '../components/HomeComponents/AddTransactionModal';
 
 
 export default function Home({ navigation }) {
@@ -20,6 +21,10 @@ export default function Home({ navigation }) {
             marginTop: 40,
             
         }}>
+            <View style={{marginVertical: 10,}}>
+                <Text style={{fontSize: 35, fontWeight: '300'}}>Hello,</Text>
+                <Text style={{fontSize: 35, fontWeight: '600',}}>Sten</Text>
+            </View>
             <Card navigation={navigation} />
             
             <View style={{flex: 1, justifyContent: 'center'}}>
@@ -36,6 +41,8 @@ export default function Home({ navigation }) {
                 }
                 {/* <AddTransactionButton navigation={navigation}/> */}
             </View>
+            <View style={{height: 90}}/>
+            {/* <AddTransactionModal /> */}
             {/* <BottomTabs navigation={navigation}/> */}
         </View>
 

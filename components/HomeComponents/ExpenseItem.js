@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { borderLeftColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
@@ -7,6 +7,17 @@ import { useDispatch } from 'react-redux';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export default function ExpenseItem(props) {
+    const [currentDate, setCurrentDate] = useState('')
+
+    useEffect(() => {
+        var date = new Date().getDate() // current date
+        var month = new Date().getMonth() + 1 // current month
+        var year = new Date().getFullYear() // current year
+        setCurrentDate(
+            date + '.' + month + '.' + year
+        )
+    }, [])
+
     const dispatch = useDispatch();
 
     return (
@@ -22,13 +33,18 @@ export default function ExpenseItem(props) {
                 <View>
                     <Text style={{
                         fontSize: 15,
+                        fontWeight: '600'
+                    }}>{props.title}</Text>
+                    <Text style={{
+                        fontSize: 13,
                         fontWeight: '600',
+                        opacity: .5,
                     }}>{props.category}</Text>
                     <Text style={{
                         fontSize: 13,
                         fontWeight: '600',
                         opacity: .5,
-                    }}>{props.title}</Text>
+                    }}>{currentDate}</Text>
                 </View>
             </View>
             <View style={styles.rightWrapper}>

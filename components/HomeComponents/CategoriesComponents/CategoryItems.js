@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Feather from 'react-native-vector-icons/Feather'
 
 
 const images = {
@@ -15,17 +14,11 @@ const images = {
 
 export default function CategoryItems() {
     
-  const {transactions} = useSelector((state) => state.transactions);
-
-    const categories = transactions.filter(transaction => transaction.category == 'Grocery')
-    // console.log(categories)
-
-    const total = categories.map(category => category.price).reduce((prev, curr) => (prev += curr), 0).toFixed(2) * -1;
-    // console.log(total)
     
   return (
     <View style={{
       marginHorizontal: 20,
+      marginTop: 30,
     }}>
       <CategoryItem category='Entertainment' image={images.entertainment} />
       <CategoryItem category='Grocery' image={images.grocery}  />
@@ -42,8 +35,10 @@ const CategoryItem = (props) => {
 
   const categories = transactions.filter(transaction => transaction.category == props.category)
   // console.log(categories)
+  const prices = categories.filter(categories => categories.price < 0)
+  // console.log(prices)
 
-  const total = categories.map(category => category.price).reduce((prev, curr) => (prev += curr), 0).toFixed(2) * -1;
+  const total = prices.map(category => category.price).reduce((prev, curr) => (prev += curr), 0).toFixed(2) * -1;
   // console.log(total)
     
   return (
@@ -55,7 +50,7 @@ const CategoryItem = (props) => {
         <Image source={props.image} style={{width: 50, height: 50, marginRight: 15,}}/>
         <Text style={styles.categoryText}>{props.category}</Text>
       </View>
-      <Text style={styles.categoryText}>{total}$</Text>
+      <Text style={styles.categoryText}>${total}</Text>
     </View>
   )
 }
@@ -67,8 +62,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     paddingVertical: 15,
     alignItems: 'center',
-    borderBottomWidth: .5,
-    borderBottomColor: '#ccc'
+    
   },
   categoryText: {
     fontSize: 16,

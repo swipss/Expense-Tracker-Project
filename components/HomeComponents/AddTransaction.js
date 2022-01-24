@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import {addTransaction} from '../../redux/store/actions/transactionAction';
 import { Picker } from '@react-native-picker/picker'
 
-export default function AddTransaction({navigation}) {
+export default function AddTransaction({navigation, modalVisible, setModalVisible}) {
     const [selectedValue, setSelectedValue] = useState("expense");
     const [category, setCategory] = useState('Entertainment');
     // console.log(selectedValue, category);
@@ -27,12 +27,15 @@ export default function AddTransaction({navigation}) {
             title,
             category,
             price: +price,
+            type: selectedValue,
         }
 
         dispatch(addTransaction({...newTransaction}));
 
+        setModalVisible(!modalVisible);
+        
 
-        navigation.goBack();
+        
     };
 
     return (
@@ -69,6 +72,7 @@ export default function AddTransaction({navigation}) {
                         style={styles.text}
                         placeholder='Title'
                         onChangeText={(title) => setTitle(title)}
+                        
                         />
                     </View>
                     
@@ -97,6 +101,23 @@ export default function AddTransaction({navigation}) {
                             fontSize: 15,
                         }}>ADD TRANSACTION</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity style={{
+                        backgroundColor: '#ccc',
+                        padding: 10,
+                        paddingVertical: 15,
+                        borderRadius: 10,
+                        alignItems: 'center',
+                        marginTop: 10,
+                    }}
+                    onPress={() => setModalVisible(!modalVisible)}
+                    >
+                        <Text style={{
+                            color: '#fff',
+                            fontWeight: '700',
+                            fontSize: 15,
+                        }}>DISMISS</Text>
+                    </TouchableOpacity>
+                    
                 </View>
                 
             </Formik>

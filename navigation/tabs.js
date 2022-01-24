@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, Platform } from "react-native";
+import { useState } from "react";
+import { StyleSheet, Text, View, Image, TouchableOpacity, Platform, Modal, Pressable, Alert, } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Entypo from 'react-native-vector-icons/Entypo'
@@ -10,27 +11,42 @@ import AddTransaction from "../components/HomeComponents/AddTransaction";
 
 const Tab = createBottomTabNavigator();
 
-const CustomTabBarButton = ({children, onPress}) => (
-    <TouchableOpacity style={{
-        top: -30,
-        justifyContent: "center",
-        alignItems: "center",
-        ...styles.shadow,
+const CustomTabBarButton = () => {
+    const [modalVisible, setModalVisible] = useState(false);
 
-    }}
-    onPress={onPress}>
-        <View style={{
-            width: 70,
-            height: 70,
-            borderRadius: 35,
-            backgroundColor: '#FAAD3D',
-            justifyContent: "center",
-            alignItems: "center",
-        }}>
-            <Entypo name="plus" size={35} color={'white'}/>
+    return (
+        <View>
+            <View>
+                <Modal
+                animationType="slide"
+                visible={modalVisible}
+                onRequestClose={() => setModalVisible(!modalVisible)}
+                >
+                    <AddTransaction modalVisible={modalVisible} setModalVisible={setModalVisible} />
+                    {/* <Pressable
+                    style={{
+                        position: 'absolute',
+                        bottom: 0,
+                    }}
+                    onPress={() => setModalVisible(!modalVisible)}
+                    >
+                         <Text>Close</Text>
+                    </Pressable> */}
+
+                </Modal>
+            </View>
+            
+            <Pressable
+            style={[styles.buttonOpen, styles.button, {marginTop: -35}]}
+            onPress={() => setModalVisible(true)}
+            >
+                <Entypo name="plus" size={28} color={'white'} />
+            </Pressable>
+            
         </View>
-    </TouchableOpacity>
-)
+    )
+
+}
 
 export default function Tabs() {
   return (
@@ -39,9 +55,9 @@ export default function Tabs() {
         tabBarShowLabel: false,
         tabBarStyle: {
             position: 'absolute',
-            // bottom: 25,
-            // left: 20,
-            // right: 20,
+            bottom: 10,
+            left: 20,
+            right: 20,
             elevation: 0,
             backgrounColor: '#fff',
             borderRadius: 15,
@@ -63,14 +79,7 @@ export default function Tabs() {
             
         }}/>
         <Tab.Screen name='Add Transaction' component={AddTransaction} options={{
-            tabBarIcon: ({focused}) => (
-                <Image source={require('../assets/icons/home.png')} resizeMode="contain" style={{
-                    width: 25,
-                    height: 25,
-                    tintColor: focused ? '#FAAD3D' : '#748c94'
-                }}/>
-            ),
-            tabBarButton: (props) => (<CustomTabBarButton {...props} />)
+            tabBarButton: () => (<CustomTabBarButton />)
         }} />
         <Tab.Screen name="Categories" component={Categories} options={{
             tabBarIcon: ({focused}) => (
@@ -98,5 +107,47 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.5,
         elevation: 5,
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 22
+    },
+    modalView: {
+      backgroundColor: "white",
+      borderRadius: 20,
+      padding: 35,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5
+    },
+    button: {
+      borderRadius: 50,
+      padding: 20,
+      elevation: 2,
+      
+      
+    },
+    buttonOpen: {
+      backgroundColor: "#F1CB0C",
+      
+    },
+    buttonClose: {
+      backgroundColor: "#2196F3",
+    },
+    textStyle: {
+      color: "white",
+      fontWeight: "bold",
+      textAlign: "center"
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: "center"
     }
 })
